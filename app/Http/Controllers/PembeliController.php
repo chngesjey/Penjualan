@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
 use App\Models\Pembeli;
+use App\Models\Pembelian;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class PembeliController extends Controller
 {
@@ -14,7 +17,8 @@ class PembeliController extends Controller
      */
     public function index()
     {
-        //
+        $pembeli = Pembeli::all();
+        return view('pembeli.index', compact('pembeli'));
     }
 
     /**
@@ -24,7 +28,9 @@ class PembeliController extends Controller
      */
     public function create()
     {
-        //
+        $barang= Barang::all();
+        $pembeli = Pembelian::all();
+       return view('pembeli.add', compact('barang', 'pembelian'));
     }
 
     /**
@@ -35,7 +41,7 @@ class PembeliController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -69,7 +75,18 @@ class PembeliController extends Controller
      */
     public function update(Request $request, Pembeli $pembeli)
     {
-        //
+        $validate = $request->validate([
+            'nama' => 'required|max:255',
+            'telepon' => 'required|numeric',
+            'alamat' => 'required|max:255',
+       ]);
+
+       $pembeli->update([
+            'nama' => $request->nama,
+            'telepon' => $request->telepon,
+            'alamat' => $request->alamat,
+       ]);
+       return redirect('pembeli');   
     }
 
     /**
@@ -80,6 +97,9 @@ class PembeliController extends Controller
      */
     public function destroy(Pembeli $pembeli)
     {
-        //
+        $pembeli = Pembeli::find($pembeli);
+        $pembeli->delete();
+
+        return redirect('pembeli');
     }
 }

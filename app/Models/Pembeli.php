@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Pembeli extends Model
 {
     use HasFactory;
+
+    protected $table = 'barang';
+
+    protected $guarded = []; 
+
+    public function barang() {
+        return $this->belongsTo(Barang::class);
+    }
+
+    public function pembelian() {
+        return $this->belongsTo(Pembelian::class);
+    }
 }

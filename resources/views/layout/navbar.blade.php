@@ -2,9 +2,9 @@
 
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg bg-light">
+<nav class="navbar navbar-expand-lg bg-info">
   <div class="container">
-    <a class="navbar-brand" href="/"><i class="fa-solid fa-store"></i> Penjualan</a>
+    <a class="navbar-brand" href="/"><i class="fa-solid fa-store"></i> <span style="font-weight:bold;"> Penjualan</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -19,7 +19,7 @@
         </li>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/pembelian">Pembeli</a>
+          <a class="nav-link" href="/pembeli">Pembeli</a>
         </li>
         </li>
         <li class="nav-item">

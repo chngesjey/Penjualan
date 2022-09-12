@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Supplier extends Model
 {
-    use HasFactory;
+    protected $table = 'supplier';
+
+    protected $guarded = []; 
+
+    public function supplier() {
+        return $this->belongsToMany(Barang::class);
+    }
+
 }

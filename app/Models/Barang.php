@@ -7,5 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Barang extends Model
 {
-    use HasFactory;
+    protected $table = 'barang';
+
+    protected $guarded = []; 
+
+    public function supplier() {
+        return $this->belongsTo(Supplier::class);
+    }
+
+    public function kategori() {
+        return $this->belongsTo(Kategori::class);
+    }
 }

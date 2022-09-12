@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pembelian;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class PembelianController extends Controller
 {
@@ -14,7 +15,7 @@ class PembelianController extends Controller
      */
     public function index()
     {
-        //
+        return view('pembelian.index');
     }
 
     /**
