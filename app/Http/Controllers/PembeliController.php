@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Barang;
+
 use App\Models\Pembeli;
-use App\Models\Pembelian;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -28,9 +27,7 @@ class PembeliController extends Controller
      */
     public function create()
     {
-        $barang= Barang::all();
-        $pembeli = Pembelian::all();
-       return view('pembeli.add', compact('barang', 'pembelian'));
+       return view('pembeli.add');
     }
 
     /**
@@ -41,7 +38,14 @@ class PembeliController extends Controller
      */
     public function store(Request $request)
     {
+        $validate = $request->validate([
+            'nama' => 'required|max:255',
+            'telepon' => 'required|numeric',
+            'alamat' => 'required|max:255',
+       ]);
 
+        $pembeli = Pembeli::create ($request->all());
+         return redirect('pembeli');
     }
 
     /**
@@ -61,9 +65,10 @@ class PembeliController extends Controller
      * @param  \App\Models\Pembeli  $pembeli
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pembeli $pembeli)
+    public function edit(Pembeli $id)
     {
-        //
+        $p = Pembeli::find($id);
+        return view('pembeli.edit', compact('p'));
     }
 
     /**
@@ -78,13 +83,13 @@ class PembeliController extends Controller
         $validate = $request->validate([
             'nama' => 'required|max:255',
             'telepon' => 'required|numeric',
-            'alamat' => 'required|max:255',
-       ]);
+            'alamat' => 'required|max:255'
+        ]); 
 
-       $pembeli->update([
-            'nama' => $request->nama,
-            'telepon' => $request->telepon,
-            'alamat' => $request->alamat,
+        $pembeli->update([
+            'nama' =>$request->nama,
+            'telepon' =>$request->telepon,
+            'alamat' =>$request->alamat,
        ]);
        return redirect('pembeli');   
     }
@@ -95,9 +100,9 @@ class PembeliController extends Controller
      * @param  \App\Models\Pembeli  $pembeli
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pembeli $pembeli)
+    public function destroy($id)
     {
-        $pembeli = Pembeli::find($pembeli);
+        $pembeli = Pembeli::find($id);
         $pembeli->delete();
 
         return redirect('pembeli');

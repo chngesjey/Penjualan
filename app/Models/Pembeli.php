@@ -9,15 +9,11 @@ class Pembeli extends Model
 {
     use HasFactory;
 
-    protected $table = 'barang';
+    protected $table = 'pembeli';
 
     protected $guarded = []; 
 
-    public function barang() {
-        return $this->belongsTo(Barang::class);
-    }
-
-    public function pembelian() {
-        return $this->belongsTo(Pembelian::class);
+    public function pembeli() {
+        return $this->belongsTo(Pembeli::class);
     }
 }

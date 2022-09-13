@@ -1,89 +1,57 @@
 @extends('layout.app')
 
 @section('title')
-    Pembeli 
+    Pembeli
 @endsection
 
 @section('content')
 <div class="card mt-3">
     <div class="card-header">
         <div class="card-title">
-            <h5>Tambah Barang</h5>
-
-
+            <h5>Edit Data Pembeli</h5>
         </div>
     </div>
-
     <div class="card-body">
-        <form action="{{ route('pembeli.update', $p->id) }}" method="POST">
+        <form action="{{ route('pembeli.update', $s->id) }}" method="POST">
             @csrf
-            @method ('PUT')
+            @method('PUT')
+            <div class="form-group">
                 <div class="row">
                     <div class="col-lg-6">
-                        <div class="form-group">
-                        <label for="nama">Nama Barang</label>
-                        <input type="text" name="nama" id="nama" value="{{ $b->nama }}" class="form-control @error('nama')is-invalid @enderror">
-                        @error('nama')
-                        <div class="text-danger">
-                            {{ $message }}
-                        </div> 
-                        @enderror
-                    </div>
-                </div>
-
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                        <label for="harga">Harga</label>
-                        <input type="text" name="harga" id="harga" value="{{ $b->harga }}" class="form-control @error('harga')is-invalid @enderror">
+                        <label for="nama">Nama Supplier</label>
+                        <input type="text" name="nama" id="nama" value="{{ $p->nama }}" class="form-control @error('nama') is-invalid @enderror">
                         @error('nama')
                             <div class="text-danger">
                                 {{ $message }}
                             </div>
-                            @enderror
-                        </div>
-                    </div>
-                </div>
-                
-
-                <div class="row">
-                    <div class="col-lg-2">
-                        <label for="stok">Stok</label>
-                        <input type="number" name="stok" id="nama" value="{{ $b->stok }}" class="form-control @error ('stok') is-invalid @enderror">
-                        @error ('nama')
-                        <div class="text-danger">
-                            {{ $message }}
-                        </div>
                         @enderror
                     </div>
 
-                    <div class="col-lg-5">
-                        <div class="form-group">
-                        <label for="supplier" class="form-label">Supplier</label>
-                        <select name="supplier_id" id="supplier_id" class="form-control">
-                            <option selected="">Pilih...</option>
-                            <option value="{{ $b->supplier_id }}" selected>{{ $b->supplier->nama }}</option>
-                            @foreach ($supplier as $s)
-                                <option value="{{ $s->id }}">{{ $s->nama }}</option>
-                            @endforeach
-                        </select>
+                    <div class="col-lg-6">
+                        <label for="telepon">Telepon</label>
+                        <input type="text" name="telepon" id="telepon" value="{{ $p->telepon }}" class="form-control @error('telepon') is-invalid @enderror">
+                        @error('telepon')
+                            <div class="text-danger">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
-                </div>
-                    <div class="col-lg-5">
+                
+                    <div class="col-lg-8">
                         <div class="form-group">
-                        <label for="kategori" class="form-label">Kategori</label>
-                        <select name="kategori_id" id="kategori_id" class="form-control">
-                            <option selected="">Pilih...</option>
-                            <option value="{{ $b->kategori_id }}" selected> {{ $b->kategori->nama }}</option>
-                            @foreach ($kategori as $item)
-                                <option value="{{ $b->kategori_id }}">{{ $item->nama}}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                        <label for="alamat">Alamat</label>
+                        <input type="text" name="alamat" id="alamat" value="{{ $p->alamat }}" class="form-control @error('alamat') is-invalid @enderror">
+                        @error('alamat')
+                            <div class="text-danger">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>  
                 </div>
             </div>
-            
-            <div class="modal-footer">
-                    <button type="submit" class="btn btn-warning">Update</button>   
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-warning">Update</button>
+                </div>    
             </div>    
         </form>
     </div>

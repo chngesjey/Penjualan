@@ -7,13 +7,13 @@ use App\Http\Controllers\{
     PembelianController,
     PembeliController,
     PenjualanController,
-    SupplierController
+    SupplierController,
+    DashboardController
 };
 
 // Route Home Memencet logo
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [DashboardController::class, 'index']);
+
 
 // Route Barang
 Route::resource('/barang', BarangController::class);

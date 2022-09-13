@@ -43,7 +43,7 @@ class BarangController extends Controller
     public function store(Request $request)
     {
        $validate = $request->validate([
-            'nama' => 'required|max:255',
+            'nama' => 'required|max:255|alpha',
             'harga' => 'required|numeric',
             'stok' => 'required|numeric|min:1',
             'supplier_id' => 'required',
